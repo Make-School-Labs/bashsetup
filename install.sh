@@ -21,15 +21,15 @@ if brew info bash | grep --quiet 'Not installed'; then
     log "⚠️" "Latest bash missing; installing now..."
     brew install --quiet bash >>/dev/null
 fi
-log "✅" "Latest bash installed in $(brew --prefix)/bin"
+log "✅" "Latest bash installed in $(brew --prefix)/bin."
 
 # Write Make School settings to the end of .bashrc, if missing:
 touch $CONFIG_PATH
 if ! grep --quiet "!! MAKE SCHOOL CONFIG: DO NOT REMOVE !!" $CONFIG_PATH; then
     curl -sSL https://raw.githubusercontent.com/Make-School-Labs/bashsetup/master/.bashrc >>$CONFIG_PATH
-    log "✅" "Configuration added for bash-git-prompt"
+    log "✅" "Configuration added for bash-git-prompt."
 fi
-log "✅" "Initialization script found in $CONFIG_PATH"
+log "✅" "Initialization script found in $CONFIG_PATH."
 
 # Load config when any login shell is invoked:
 touch $PROFILE_PATH
@@ -42,7 +42,11 @@ if brew info bash-git-prompt | grep --quiet 'Not installed'; then
     log "⚠️" "bash-git-prompt missing; installing now..."
     brew install --quiet bash-git-prompt >>/dev/null
 fi
-log "✅" "Prompt installed and ready to use"
+log "✅" "Prompt installed and ready to use."
+
+# Copy Terminal settings file to ~/Downloads in case students want to use it.
+curl -sSL https://raw.githubusercontent.com/Make-School-Labs/bashsetup/master/MakeSchool.terminal >>$HOME/Downloads/MakeSchool.terminal
+log "✅" "Terminal settings saved. Double-click ~/Downloads/MakeSchool.terminal to use."
 
 # Render info messages to user:
 echo "----------------------------------------------------------------------------------------"
