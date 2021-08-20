@@ -23,6 +23,9 @@ if brew info bash | grep --quiet 'Not installed'; then
 fi
 log "✅" "Latest bash installed in $(brew --prefix)/bin."
 
+# Make sure bash location is properly exported:
+echo 'export PATH="$PATH:/opt/homebrew/bin/"' >>$CONFIG_PATH
+
 # Write Make School settings to the end of .bashrc, if missing:
 touch $CONFIG_PATH
 if ! grep --quiet "!! MAKE SCHOOL CONFIG: DO NOT REMOVE !!" $CONFIG_PATH; then
